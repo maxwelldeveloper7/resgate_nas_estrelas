@@ -7,9 +7,9 @@ pygame.init()
 
 # Configurações da janela
 screen = pygame.display.set_mode((1000, 1000))
-pygame.display.set_caption("Resgate nas Estrelas")
+pygame.display.set_caption("Resgate nas Estrelas")  # Novo título da janela
 
-# Definindo cores com base na imagem fornecida
+# Definindo cores
 WHITE = (255, 255, 255)
 YELLOW = (200, 200, 0)
 LIGHT_BLUE = (173, 216, 230)
@@ -17,6 +17,9 @@ LIGHT_PEACH = (246, 237, 233)
 LIGHT_PINK = (236, 219, 211)
 LIGHT_GRAY_GREEN = (236, 239, 232)
 LIGHT_BLUE_GRAY = (221, 231, 239)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
 COLORS = [WHITE, YELLOW, LIGHT_BLUE, LIGHT_PEACH, LIGHT_GRAY_GREEN, LIGHT_BLUE_GRAY]
 
 # Função para criar estrelas
@@ -61,6 +64,11 @@ stars_layer3 = create_stars(num_stars_layer3, 3)  # Camada mais rápida
 def game_loop():
     clock = pygame.time.Clock()
     running = True
+    score = 0
+    energy = 100
+
+    font = pygame.font.Font(None, 36)
+
     while running:
         clock.tick(30)  # Define a taxa de frames por segundo (FPS)
         for event in pygame.event.get():
@@ -68,7 +76,7 @@ def game_loop():
                 running = False
 
         # Desenhar fundo preto
-        screen.fill((0, 0, 0))
+        screen.fill(BLACK)
         
         # Atualizar e desenhar estrelas de cada camada
         update_stars(stars_layer1)
@@ -79,6 +87,14 @@ def game_loop():
         
         update_stars(stars_layer3)
         draw_stars(screen, stars_layer3)
+
+        # Exibir pontuação
+        score_text = font.render(f"Pontuação: {score}", True, WHITE)
+        screen.blit(score_text, (10, 10))
+
+        # Exibir barra de energia
+        pygame.draw.rect(screen, RED, (750, 10, 240, 25))  # Barra vermelha (fundo)
+        pygame.draw.rect(screen, GREEN, (750, 10, energy * 2.4, 25))  # Barra verde (energia)
 
         pygame.display.flip()
 

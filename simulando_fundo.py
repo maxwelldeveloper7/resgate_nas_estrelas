@@ -7,7 +7,7 @@ pygame.init()
 
 # Configurações da janela
 screen = pygame.display.set_mode((1000, 1000))
-pygame.display.set_caption("Jogo de Nave Interestelar")
+pygame.display.set_caption("Resgate nas Estrelas")
 
 # Definindo cores com base na imagem fornecida
 WHITE = (255, 255, 255)

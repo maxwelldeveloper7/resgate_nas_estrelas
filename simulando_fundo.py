@@ -28,7 +28,7 @@ def create_stars(num_stars, max_speed):
     for _ in range(num_stars):
         x = random.randint(0, 1000)
         y = random.randint(0, 1000)
-        radius = random.randint(1, 3)
+        radius = random.randint(1, 2)
         color = random.choice(COLORS)
         speed = random.randint(1, max_speed)
         stars.append([x, y, radius, color, speed])
@@ -46,7 +46,7 @@ def update_stars(stars):
         if star[1] > 1000:  # Se a estrela sair da tela (parte inferior)
             star[1] = 0  # Reposicionar estrela no topo
             star[0] = random.randint(0, 1000)  # Nova posição horizontal aleatória
-            star[2] = random.randint(1, 3)  # Novo raio aleatório
+            star[2] = random.randint(1, 2)  # Novo raio aleatório
             star[3] = random.choice(COLORS)  # Nova cor aleatória
             star[4] = random.randint(1, 3)  # Nova velocidade aleatória
 
@@ -67,7 +67,7 @@ def game_loop():
     score = 0
     energy = 100
 
-    font = pygame.font.Font(None, 36)
+    font = pygame.font.Font(None, 24)
 
     while running:
         clock.tick(30)  # Define a taxa de frames por segundo (FPS)
@@ -89,12 +89,12 @@ def game_loop():
         draw_stars(screen, stars_layer3)
 
         # Exibir pontuação
-        score_text = font.render(f"Pontuação: {score}", True, WHITE)
+        score_text = font.render(f"Score: {score}", True, WHITE)
         screen.blit(score_text, (10, 10))
 
         # Exibir barra de energia
-        pygame.draw.rect(screen, RED, (750, 10, 240, 25))  # Barra vermelha (fundo)
-        pygame.draw.rect(screen, GREEN, (750, 10, energy * 2.4, 25))  # Barra verde (energia)
+        pygame.draw.rect(screen, RED, (750, 10, 240, 15))  # Barra vermelha (fundo)
+        pygame.draw.rect(screen, GREEN, (750, 10, energy * 2.4, 15))  # Barra verde (energia)
 
         pygame.display.flip()
 

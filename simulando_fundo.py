@@ -28,27 +28,25 @@ def create_stars(num_stars, max_speed):
     for _ in range(num_stars):
         x = random.randint(0, 1000)
         y = random.randint(0, 1000)
-        radius = random.randint(1, 2)
         color = random.choice(COLORS)
         speed = random.randint(1, max_speed)
-        stars.append([x, y, radius, color, speed])
+        stars.append([x, y, color, speed])
     return stars
 
 # Função para desenhar estrelas no fundo
 def draw_stars(screen, stars):
     for star in stars:
-        pygame.draw.circle(screen, star[3], (star[0], star[1]), star[2])
+        screen.set_at((star[0], star[1]), star[2])
 
 # Função para atualizar posição das estrelas
 def update_stars(stars):
     for star in stars:
-        star[1] += star[4]  # Mover a estrela para baixo de acordo com a velocidade
+        star[1] += star[3]  # Mover a estrela para baixo de acordo com a velocidade
         if star[1] > 1000:  # Se a estrela sair da tela (parte inferior)
             star[1] = 0  # Reposicionar estrela no topo
             star[0] = random.randint(0, 1000)  # Nova posição horizontal aleatória
-            star[2] = random.randint(1, 2)  # Novo raio aleatório
-            star[3] = random.choice(COLORS)  # Nova cor aleatória
-            star[4] = random.randint(1, 3)  # Nova velocidade aleatória
+            star[2] = random.choice(COLORS)  # Nova cor aleatória
+            star[3] = random.randint(1, 3)  # Nova velocidade aleatória
 
 # Número de estrelas por camada
 num_stars_layer1 = 50

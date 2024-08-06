@@ -6,7 +6,7 @@ import random
 pygame.init()
 
 # Configurações da janela
-screen = pygame.display.set_mode((1000, 1000))
+screen = pygame.display.set_mode((800, 800))
 pygame.display.set_caption("Resgate nas Estrelas")  # Novo título da janela
 
 # Definindo cores
@@ -26,8 +26,8 @@ COLORS = [WHITE, YELLOW, LIGHT_BLUE, LIGHT_PEACH, LIGHT_GRAY_GREEN, LIGHT_BLUE_G
 def create_stars(num_stars, max_speed):
     stars = []
     for _ in range(num_stars):
-        x = random.randint(0, 1000)
-        y = random.randint(0, 1000)
+        x = random.randint(0, 800)
+        y = random.randint(0, 800)
         color = random.choice(COLORS)
         speed = random.randint(1, max_speed)
         stars.append([x, y, color, speed])
@@ -42,9 +42,9 @@ def draw_stars(screen, stars):
 def update_stars(stars):
     for star in stars:
         star[1] += star[3]  # Mover a estrela para baixo de acordo com a velocidade
-        if star[1] > 1000:  # Se a estrela sair da tela (parte inferior)
+        if star[1] > 800:  # Se a estrela sair da tela (parte inferior)
             star[1] = 0  # Reposicionar estrela no topo
-            star[0] = random.randint(0, 1000)  # Nova posição horizontal aleatória
+            star[0] = random.randint(0, 800)  # Nova posição horizontal aleatória
             star[2] = random.choice(COLORS)  # Nova cor aleatória
             star[3] = random.randint(1, 3)  # Nova velocidade aleatória
 
@@ -91,8 +91,8 @@ def game_loop():
         screen.blit(score_text, (10, 10))
 
         # Exibir barra de energia
-        pygame.draw.rect(screen, RED, (750, 10, 240, 15))  # Barra vermelha (fundo)
-        pygame.draw.rect(screen, GREEN, (750, 10, energy * 2.4, 15))  # Barra verde (energia)
+        pygame.draw.rect(screen, RED, (550, 10, 240, 15))  # Barra vermelha (fundo)
+        pygame.draw.rect(screen, GREEN, (550, 10, energy * 2.4, 15))  # Barra verde (energia)
 
         pygame.display.flip()
 
